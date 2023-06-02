@@ -40,7 +40,7 @@ public:
 
 	int at(int index)
 	{
-		if (index >= capacity_v)
+		if (index >= size_v)
 		{
 			cout << "Out out bounds\n";
 			return -1;
@@ -98,6 +98,11 @@ public:
 		{
 			*(array + i) = *(array + i + 1);
 		}
+		size_v--;
+		if (size_v * 4 == capacity_v)
+		{
+			resize(capacity_v / 2);
+		}
 	}
 
 	void remove(int item)
@@ -145,9 +150,17 @@ int main()
 	{
 		v.push(i + 1);
 	}
-	for (int i = 0; i < 33; i++)
+	cout << v.capacity() << '\n';
+
+	for (int i = 0; i < 20; i++)
+	{
+		cout << v.pop();
+	}
+
+	cout << v.capacity() << '\n';
+
+	for (int i = 0; i < 32; i++)
 	{
 		cout << v.at(i) << '\n';
 	}
-	cout << v.capacity() << '\n';
 }
